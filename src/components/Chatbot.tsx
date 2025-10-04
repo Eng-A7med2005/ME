@@ -1,0 +1,382 @@
+'use client';
+
+import { MessageCircle, X, Send, Bot, User } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+
+const chatbotResponses = {
+  greeting: [
+    "Hello! I'm Ahmed's AI assistant. How can I help you today?",
+    "Hi there! I'm here to answer questions about Ahmed's work and projects.",
+    "Welcome! I can help you learn more about Ahmed's AI and Data Science expertise."
+  ],
+  about: [
+    "Ahmed is an AI & Data Science Engineer with expertise in Machine Learning, Deep Learning, and AI Agents. He's currently studying at Kafr El Sheikh University.",
+    "Ahmed specializes in building end-to-end intelligent platforms from data acquisition to deployment, integrating scalable AI solutions and automation systems.",
+    "He has experience in Computer Vision, NLP, and AI Automation, with a focus on creating real-world impact through intelligent systems."
+  ],
+  projects: [
+    "Ahmed has worked on several exciting projects including CurinAI (AI-Powered Digital Health Platform), Sellio (AI-powered sales automation), and various computer vision projects.",
+    "Some notable projects include Egyptian Car Plates Recognition using YOLO, Face Recognition Attendance System, and Sentiment Analysis models.",
+    "He's currently developing CurinAI and Sellio, both AI-powered platforms that demonstrate his expertise in healthcare and sales automation."
+  ],
+  experience: [
+    "Ahmed has interned at Technocolabs, Uneeq, and Coding Samurai, gaining valuable experience in data science and machine learning.",
+    "His internships focused on predictive analytics, data preprocessing, model building, and deployment in real-world scenarios.",
+    "He's worked on logistics optimization, data analysis, and machine learning model development across different industries."
+  ],
+  skills: [
+    "Ahmed's technical skills include Python, SQL, C++, Machine Learning, Deep Learning with TensorFlow & Keras, Computer Vision, NLP, and AI Automation.",
+    "He's proficient in data analysis tools like Pandas, NumPy, Matplotlib, Seaborn, and Plotly, as well as frameworks like Scikit-learn and OpenCV.",
+    "His expertise spans the complete data science workflow from data collection and preprocessing to model deployment and optimization."
+  ],
+  contact: [
+    "You can reach Ahmed at a7medfouda2005@gmail.com or +20 115 150 8503. He's located in Meet Hashim - Samanood, Egypt.",
+    "Connect with Ahmed on LinkedIn (https://www.linkedin.com/in/a7med-fouda-gt3rs), GitHub (https://github.com/Eng-A7med2005), or WhatsApp. He's always interested in new opportunities and exciting projects!",
+    "Feel free to contact Ahmed through the contact form on this website or via his social media profiles."
+  ],
+  default: [
+    "I'm not sure I understand that question. Could you ask about Ahmed's work, projects, experience, or skills?",
+    "That's an interesting question! Could you be more specific about what you'd like to know about Ahmed?",
+    "I'd be happy to help! Try asking about Ahmed's background, projects, or how to contact him."
+  ]
+};
+
+export default function Chatbot() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    {
+      id: 1,
+      text: "Hello! I'm Ahmed's AI assistant. How can I help you today?",
+      sender: 'bot',
+      timestamp: new Date()
+    }
+  ]);
+  const [inputValue, setInputValue] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const getBotResponse = (userMessage) => {
+    const message = userMessage.toLowerCase();
+    
+    if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
+      return chatbotResponses.greeting[Math.floor(Math.random() * chatbotResponses.greeting.length)];
+    } else if (message.includes('about') || message.includes('who') || message.includes('background')) {
+      return chatbotResponses.about[Math.floor(Math.random() * chatbotResponses.about.length)];
+    } else if (message.includes('project') || message.includes('work') || message.includes('portfolio')) {
+      return chatbotResponses.projects[Math.floor(Math.random() * chatbotResponses.projects.length)];
+    } else if (message.includes('experience') || message.includes('intern') || message.includes('job')) {
+      return chatbotResponses.experience[Math.floor(Math.random() * chatbotResponses.experience.length)];
+    } else if (message.includes('skill') || message.includes('technology') || message.includes('programming')) {
+      return chatbotResponses.skills[Math.floor(Math.random() * chatbotResponses.skills.length)];
+    } else if (message.includes('contact') || message.includes('email') || message.includes('phone')) {
+      return chatbotResponses.contact[Math.floor(Math.random() * chatbotResponses.contact.length)];
+    } else {
+      return chatbotResponses.default[Math.floor(Math.random() * chatbotResponses.default.length)];
+    }
+  };
+
+  const handleSendMessage = () => {
+    if (!inputValue.trim()) return;
+
+    const userMessage = {
+      id: Date.now(),
+      text: inputValue,
+      sender: 'user',
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    setInputValue('');
+    setIsTyping(true);
+
+    // Simulate bot typing delay
+    setTimeout(() => {
+      const botResponse = {
+        id: Date.now() + 1,
+        text: getBotResponse(inputValue),
+        sender: 'bot',
+        timestamp: new Date()
+      };
+      
+      setMessages(prev => [...prev, botResponse]);
+      setIsTyping(false);
+    }, 1000 + Math.random() * 1000);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
+
+  return (
+    <>
+      {/* Chatbot Toggle Button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        style={{
+          position: 'fixed',
+          bottom: '2rem',
+          right: '2rem',
+          width: '4rem',
+          height: '4rem',
+          background: 'linear-gradient(135deg, var(--color-accent), var(--color-secondary))',
+          borderRadius: '50%',
+          border: 'none',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 10px 30px rgba(100, 255, 218, 0.3)',
+          transition: 'all 0.3s',
+          zIndex: 1000
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.transform = 'scale(1.1)';
+          e.target.style.boxShadow = '0 15px 40px rgba(100, 255, 218, 0.4)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.transform = 'scale(1)';
+          e.target.style.boxShadow = '0 10px 30px rgba(100, 255, 218, 0.3)';
+        }}
+      >
+        {isOpen ? (
+          <X size={24} style={{ color: '#0A192F' }} />
+        ) : (
+          <MessageCircle size={24} style={{ color: '#0A192F' }} />
+        )}
+      </button>
+
+      {/* Chatbot Window */}
+      {isOpen && (
+        <div style={{
+          position: 'fixed',
+          bottom: '6rem',
+          right: '2rem',
+          width: '350px',
+          height: '500px',
+          background: 'rgba(var(--color-background), 0.95)',
+          borderRadius: '1rem',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(100, 255, 218, 0.2)',
+          boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          flexDirection: 'column',
+          zIndex: 1001,
+          overflow: 'hidden'
+        }}>
+          {/* Chat Header */}
+          <div style={{
+            padding: '1rem',
+            background: 'linear-gradient(135deg, var(--color-accent), var(--color-secondary))',
+            color: '#0A192F',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Bot size={20} />
+              <span style={{ fontWeight: '600' }}>Ahmed's AI Assistant</span>
+            </div>
+            <button
+              onClick={() => setIsOpen(false)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#0A192F',
+                cursor: 'pointer',
+                padding: '0.25rem'
+              }}
+            >
+              <X size={18} />
+            </button>
+          </div>
+
+          {/* Messages Area */}
+          <div style={{
+            flex: 1,
+            padding: '1rem',
+            overflowY: 'auto',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1rem'
+          }}>
+            {messages.map((message) => (
+              <div
+                key={message.id}
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '0.5rem',
+                  flexDirection: message.sender === 'user' ? 'row-reverse' : 'row'
+                }}
+              >
+                <div style={{
+                  width: '2rem',
+                  height: '2rem',
+                  borderRadius: '50%',
+                  background: message.sender === 'user' 
+                    ? 'linear-gradient(135deg, var(--color-accent), var(--color-secondary))'
+                    : 'linear-gradient(135deg, var(--color-accent), var(--color-secondary))',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  {message.sender === 'user' ? (
+                    <User size={14} style={{ color: '#0A192F' }} />
+                  ) : (
+                    <Bot size={14} style={{ color: 'white' }} />
+                  )}
+                </div>
+                <div style={{
+                  maxWidth: '80%',
+                  padding: '0.75rem 1rem',
+                  borderRadius: '1rem',
+                  background: message.sender === 'user' 
+                    ? 'linear-gradient(135deg, var(--color-accent), var(--color-secondary))'
+                    : 'rgba(255, 255, 255, 0.1)',
+                  color: message.sender === 'user' ? '#0A192F' : '#CCD6F6',
+                  fontSize: '0.875rem',
+                  lineHeight: '1.4'
+                }}>
+                  {message.text}
+                </div>
+              </div>
+            ))}
+
+            {isTyping && (
+              <div style={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '0.5rem'
+              }}>
+                <div style={{
+                  width: '2rem',
+                  height: '2rem',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, var(--color-accent), var(--color-secondary))',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <Bot size={14} style={{ color: 'white' }} />
+                </div>
+                <div style={{
+                  padding: '0.75rem 1rem',
+                  borderRadius: '1rem',
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  color: 'var(--color-text)',
+                  fontSize: '0.875rem'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    gap: '0.25rem'
+                  }}>
+                    <div style={{
+                      width: '6px',
+                      height: '6px',
+                      borderRadius: '50%',
+                      background: '#64FFDA',
+                      animation: 'typing 1.4s infinite ease-in-out'
+                    }}></div>
+                    <div style={{
+                      width: '6px',
+                      height: '6px',
+                      borderRadius: '50%',
+                      background: '#64FFDA',
+                      animation: 'typing 1.4s infinite ease-in-out 0.2s'
+                    }}></div>
+                    <div style={{
+                      width: '6px',
+                      height: '6px',
+                      borderRadius: '50%',
+                      background: '#64FFDA',
+                      animation: 'typing 1.4s infinite ease-in-out 0.4s'
+                    }}></div>
+                  </div>
+                </div>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Input Area */}
+          <div style={{
+            padding: '1rem',
+            borderTop: '1px solid rgba(100, 255, 218, 0.1)'
+          }}>
+            <div style={{
+              display: 'flex',
+              gap: '0.5rem',
+              alignItems: 'flex-end'
+            }}>
+              <input
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder="Ask me about Ahmed..."
+                style={{
+                  flex: 1,
+                  padding: '0.75rem 1rem',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(100, 255, 218, 0.2)',
+                  borderRadius: '0.5rem',
+                  color: 'var(--color-text)',
+                  fontSize: '0.875rem',
+                  outline: 'none',
+                  resize: 'none'
+                }}
+              />
+              <button
+                onClick={handleSendMessage}
+                disabled={!inputValue.trim()}
+                style={{
+                  padding: '0.75rem',
+                  background: inputValue.trim() 
+                    ? 'linear-gradient(135deg, var(--color-accent), var(--color-secondary))'
+                    : 'rgba(255, 255, 255, 0.1)',
+                  border: 'none',
+                  borderRadius: '0.5rem',
+                  cursor: inputValue.trim() ? 'pointer' : 'not-allowed',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'all 0.3s'
+                }}
+              >
+                <Send size={16} style={{ 
+                  color: inputValue.trim() ? '#0A192F' : '#8892B0' 
+                }} />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <style jsx>{`
+        @keyframes typing {
+          0%, 60%, 100% {
+            transform: translateY(0);
+            opacity: 0.5;
+          }
+          30% {
+            transform: translateY(-10px);
+            opacity: 1;
+          }
+        }
+      `}</style>
+    </>
+  );
+}
