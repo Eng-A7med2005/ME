@@ -58,7 +58,7 @@ export default function Hero() {
                 marginBottom: '0.5rem',
                 lineHeight: '1.1'
               }}>
-                Hello, I'm{' '}
+                Hello, I&apos;m{' '}
                 <span style={{
                   background: 'linear-gradient(135deg, var(--color-accent), var(--color-secondary))',
                   WebkitBackgroundClip: 'text',
@@ -83,7 +83,7 @@ export default function Hero() {
                 margin: '1.5rem auto',
                 lineHeight: '1.7'
               }}>
-                I'm a passionate Full-Stack Developer and Data Scientist with expertise in building web applications and machine learning solutions.
+                I&apos;m a passionate Full-Stack Developer and Data Scientist with expertise in building web applications and machine learning solutions.
               </p>
             </div>
 

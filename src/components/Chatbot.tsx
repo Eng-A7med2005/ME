@@ -3,44 +3,6 @@
 import { MessageCircle, X, Send, Bot, User } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
-const chatbotResponses = {
-  greeting: [
-    "Hello! I'm Ahmed's AI assistant. How can I help you today?",
-    "Hi there! I'm here to answer questions about Ahmed's work and projects.",
-    "Welcome! I can help you learn more about Ahmed's AI and Data Science expertise."
-  ],
-  about: [
-    "Ahmed is an AI & Data Science Engineer with expertise in Machine Learning, Deep Learning, and AI Agents. He's currently studying at Kafr El Sheikh University.",
-    "Ahmed specializes in building end-to-end intelligent platforms from data acquisition to deployment, integrating scalable AI solutions and automation systems.",
-    "He has experience in Computer Vision, NLP, and AI Automation, with a focus on creating real-world impact through intelligent systems."
-  ],
-  projects: [
-    "Ahmed has worked on several exciting projects including CurinAI (AI-Powered Digital Health Platform), Sellio (AI-powered sales automation), and various computer vision projects.",
-    "Some notable projects include Egyptian Car Plates Recognition using YOLO, Face Recognition Attendance System, and Sentiment Analysis models.",
-    "He's currently developing CurinAI and Sellio, both AI-powered platforms that demonstrate his expertise in healthcare and sales automation."
-  ],
-  experience: [
-    "Ahmed has interned at Technocolabs, Uneeq, and Coding Samurai, gaining valuable experience in data science and machine learning.",
-    "His internships focused on predictive analytics, data preprocessing, model building, and deployment in real-world scenarios.",
-    "He's worked on logistics optimization, data analysis, and machine learning model development across different industries."
-  ],
-  skills: [
-    "Ahmed's technical skills include Python, SQL, C++, Machine Learning, Deep Learning with TensorFlow & Keras, Computer Vision, NLP, and AI Automation.",
-    "He's proficient in data analysis tools like Pandas, NumPy, Matplotlib, Seaborn, and Plotly, as well as frameworks like Scikit-learn and OpenCV.",
-    "His expertise spans the complete data science workflow from data collection and preprocessing to model deployment and optimization."
-  ],
-  contact: [
-    "You can reach Ahmed at a7medfouda2005@gmail.com or +20 115 150 8503. He's located in Meet Hashim - Samanood, Egypt.",
-    "Connect with Ahmed on LinkedIn (https://www.linkedin.com/in/a7med-fouda-gt3rs), GitHub (https://github.com/Eng-A7med2005), or WhatsApp. He's always interested in new opportunities and exciting projects!",
-    "Feel free to contact Ahmed through the contact form on this website or via his social media profiles."
-  ],
-  default: [
-    "I'm not sure I understand that question. Could you ask about Ahmed's work, projects, experience, or skills?",
-    "That's an interesting question! Could you be more specific about what you'd like to know about Ahmed?",
-    "I'd be happy to help! Try asking about Ahmed's background, projects, or how to contact him."
-  ]
-};
-
 interface Message {
   id: number;
   text: string;

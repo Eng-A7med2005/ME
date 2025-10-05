@@ -111,7 +111,7 @@ export default function Contact() {
             color: 'var(--color-text)',
             marginBottom: '1rem'
           }}>
-            📞 Contact Me
+            &#x1F4DE; Contact Me
           </h2>
           <div style={{
             width: '6rem',
@@ -127,7 +127,7 @@ export default function Contact() {
             lineHeight: '1.7',
             textAlign: 'center'
           }}>
-            I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.
+            I&apos;m always open to discussing new projects, creative ideas or opportunities to be part of your visions.
           </p>
         </div>
 
@@ -154,8 +154,8 @@ export default function Contact() {
               lineHeight: '1.6',
               fontSize: '1.1rem'
             }}>
-              I'm always interested in new opportunities and exciting projects. 
-              Whether you have a question or just want to say hi, I'll try my best to get back to you!
+              I&apos;m always interested in new opportunities and exciting projects. 
+              Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
             </p>
 
             {/* Contact Info Cards */}
