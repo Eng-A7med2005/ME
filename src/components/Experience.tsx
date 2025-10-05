@@ -177,12 +177,14 @@ export default function Experience() {
                     transition: 'all 0.3s'
                   }}
                   onMouseEnter={(e) => {
-                    e.target.style.transform = 'translateY(-5px)';
-                    e.target.style.borderColor = 'rgba(100, 255, 218, 0.3)';
+                    const target = e.target as HTMLElement;
+                    target.style.transform = 'translateY(-5px)';
+                    target.style.borderColor = 'rgba(100, 255, 218, 0.3)';
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.transform = 'translateY(0)';
-                    e.target.style.borderColor = 'rgba(100, 255, 218, 0.1)';
+                    const target = e.target as HTMLElement;
+                    target.style.transform = 'translateY(0)';
+                    target.style.borderColor = 'rgba(100, 255, 218, 0.1)';
                   }}
                   >
                     <div style={{
@@ -332,12 +334,14 @@ export default function Experience() {
                   transition: 'all 0.3s'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-5px)';
-                  e.target.style.borderColor = 'rgba(100, 255, 218, 0.3)';
+                  const target = e.target as HTMLElement;
+                  target.style.transform = 'translateY(-5px)';
+                  target.style.borderColor = 'rgba(100, 255, 218, 0.3)';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.borderColor = 'rgba(100, 255, 218, 0.1)';
+                  const target = e.target as HTMLElement;
+                  target.style.transform = 'translateY(0)';
+                  target.style.borderColor = 'rgba(100, 255, 218, 0.1)';
                 }}
               >
                 <div style={{

@@ -3,37 +3,49 @@
 import { Mail, Phone, MapPin, Send, Github, Linkedin, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
 
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
 export default function Contact() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [submitStatus, setSubmitStatus] = useState<{success: boolean | null, message: string}>({success: null, message: ''});
 
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
+    try {
+      // Replace with your form submission logic
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      setSubmitStatus({
+        success: true,
+        message: 'Your message has been sent successfully! I\'ll get back to you soon.'
+      });
       setFormData({ name: '', email: '', message: '' });
-      
-      // Reset success message after 3 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 3000);
-    }, 2000);
+    } catch (error) {
+      setSubmitStatus({
+        success: false,
+        message: 'Something went wrong. Please try again later.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -167,13 +179,15 @@ export default function Contact() {
                     textDecoration: 'none',
                     transition: 'all 0.3s'
                   }}
-                  onMouseEnter={(e) => {
-                    e.target.style.transform = 'translateY(-5px)';
-                    e.target.style.borderColor = 'rgba(100, 255, 218, 0.3)';
+                  onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                    const target = e.currentTarget;
+                    target.style.transform = 'translateY(-5px)';
+                    target.style.borderColor = 'rgba(100, 255, 218, 0.3)';
                   }}
-                  onMouseLeave={(e) => {
-                    e.target.style.transform = 'translateY(0)';
-                    e.target.style.borderColor = 'rgba(100, 255, 218, 0.1)';
+                  onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                    const target = e.currentTarget;
+                    target.style.transform = 'translateY(0)';
+                    target.style.borderColor = 'rgba(100, 255, 218, 0.1)';
                   }}
                 >
                   <div style={{
@@ -240,13 +254,15 @@ export default function Contact() {
                       transition: 'all 0.3s',
                       boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)'
                     }}
-                    onMouseEnter={(e) => {
-                      e.target.style.transform = 'translateY(-3px) scale(1.1)';
-                      e.target.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.3)';
+                    onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                      const target = e.currentTarget;
+                      target.style.transform = 'translateY(-3px) scale(1.1)';
+                      target.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.3)';
                     }}
-                    onMouseLeave={(e) => {
-                      e.target.style.transform = 'translateY(0) scale(1)';
-                      e.target.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+                    onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                      const target = e.currentTarget;
+                      target.style.transform = 'translateY(0) scale(1)';
+                      target.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
                     }}
                   >
                     <social.icon size={20} style={{ color: 'white' }} />
@@ -275,18 +291,18 @@ export default function Contact() {
                 Send Message
               </h3>
 
-              {isSubmitted && (
+              {submitStatus.success !== null && (
                 <div style={{
                   padding: '1rem',
-                  background: 'rgba(16, 185, 129, 0.1)',
-                  border: '1px solid rgba(16, 185, 129, 0.3)',
+                  background: submitStatus.success ? 'rgba(16, 185, 129, 0.1)' : 'rgba(255, 0, 0, 0.1)',
+                  border: submitStatus.success ? '1px solid rgba(16, 185, 129, 0.3)' : '1px solid rgba(255, 0, 0, 0.3)',
                   borderRadius: '0.5rem',
                   marginBottom: '1.5rem',
-                  color: '#10B981',
+                  color: submitStatus.success ? '#10B981' : '#FF0000',
                   textAlign: 'center',
                   fontWeight: '600'
                 }}>
-                  ✅ Message sent successfully! I'll get back to you soon.
+                  {submitStatus.message}
                 </div>
               )}
 
@@ -303,30 +319,32 @@ export default function Contact() {
                   </label>
                   <input
                     type="text"
+                    id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
                     required
                     style={{
                       width: '100%',
-                      padding: '0.75rem 1rem',
+                      padding: '1rem',
                       background: 'rgba(255, 255, 255, 0.05)',
                       border: '1px solid rgba(100, 255, 218, 0.2)',
                       borderRadius: '0.5rem',
                       color: 'var(--color-text)',
                       fontSize: '1rem',
-                      outline: 'none',
+                      fontFamily: 'inherit',
                       transition: 'all 0.3s'
                     }}
-                    onFocus={(e) => {
-                      e.target.style.borderColor = 'rgba(100, 255, 218, 0.5)';
-                      e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                    onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
+                      const target = e.target;
+                      target.style.borderColor = 'rgba(100, 255, 218, 0.5)';
+                      target.style.background = 'rgba(255, 255, 255, 0.1)';
                     }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = 'rgba(100, 255, 218, 0.2)';
-                      e.target.style.background = 'rgba(255, 255, 255, 0.05)';
+                    onBlur={(e: React.FocusEvent<HTMLInputElement>) => {
+                      const target = e.target;
+                      target.style.borderColor = 'rgba(100, 255, 218, 0.2)';
+                      target.style.background = 'rgba(255, 255, 255, 0.05)';
                     }}
-                    placeholder="Your Name"
                   />
                 </div>
 
@@ -342,30 +360,32 @@ export default function Contact() {
                   </label>
                   <input
                     type="email"
+                    id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
                     required
                     style={{
                       width: '100%',
-                      padding: '0.75rem 1rem',
+                      padding: '1rem',
                       background: 'rgba(255, 255, 255, 0.05)',
                       border: '1px solid rgba(100, 255, 218, 0.2)',
                       borderRadius: '0.5rem',
                       color: 'var(--color-text)',
                       fontSize: '1rem',
-                      outline: 'none',
+                      fontFamily: 'inherit',
                       transition: 'all 0.3s'
                     }}
-                    onFocus={(e) => {
-                      e.target.style.borderColor = 'rgba(100, 255, 218, 0.5)';
-                      e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                    onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
+                      const target = e.target;
+                      target.style.borderColor = 'rgba(100, 255, 218, 0.5)';
+                      target.style.background = 'rgba(255, 255, 255, 0.1)';
                     }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = 'rgba(100, 255, 218, 0.2)';
-                      e.target.style.background = 'rgba(255, 255, 255, 0.05)';
+                    onBlur={(e: React.FocusEvent<HTMLInputElement>) => {
+                      const target = e.target;
+                      target.style.borderColor = 'rgba(100, 255, 218, 0.2)';
+                      target.style.background = 'rgba(255, 255, 255, 0.05)';
                     }}
-                    placeholder="your.email@example.com"
                   />
                 </div>
 
@@ -380,6 +400,7 @@ export default function Contact() {
                     Message
                   </label>
                   <textarea
+                    id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
@@ -387,26 +408,26 @@ export default function Contact() {
                     rows={5}
                     style={{
                       width: '100%',
-                      padding: '0.75rem 1rem',
+                      padding: '1rem',
                       background: 'rgba(255, 255, 255, 0.05)',
                       border: '1px solid rgba(100, 255, 218, 0.2)',
                       borderRadius: '0.5rem',
                       color: 'var(--color-text)',
                       fontSize: '1rem',
-                      outline: 'none',
+                      fontFamily: 'inherit',
                       resize: 'vertical',
-                      transition: 'all 0.3s',
-                      fontFamily: 'inherit'
+                      transition: 'all 0.3s'
                     }}
-                    onFocus={(e) => {
-                      e.target.style.borderColor = 'rgba(100, 255, 218, 0.5)';
-                      e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                    onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => {
+                      const target = e.target;
+                      target.style.borderColor = 'rgba(100, 255, 218, 0.5)';
+                      target.style.background = 'rgba(255, 255, 255, 0.1)';
                     }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = 'rgba(100, 255, 218, 0.2)';
-                      e.target.style.background = 'rgba(255, 255, 255, 0.05)';
+                    onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) => {
+                      const target = e.target;
+                      target.style.borderColor = 'rgba(100, 255, 218, 0.2)';
+                      target.style.background = 'rgba(255, 255, 255, 0.05)';
                     }}
-                    placeholder="Tell me about your project or just say hello!"
                   />
                 </div>
 
@@ -431,16 +452,18 @@ export default function Contact() {
                     gap: '0.5rem',
                     fontSize: '1rem'
                   }}
-                  onMouseEnter={(e) => {
+                  onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
                     if (!isSubmitting) {
-                      e.target.style.transform = 'translateY(-2px)';
-                      e.target.style.boxShadow = '0 10px 20px rgba(100, 255, 218, 0.3)';
+                      const target = e.currentTarget;
+                      target.style.transform = 'translateY(-2px)';
+                      target.style.boxShadow = '0 10px 20px rgba(100, 255, 218, 0.3)';
                     }
                   }}
-                  onMouseLeave={(e) => {
+                  onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
                     if (!isSubmitting) {
-                      e.target.style.transform = 'translateY(0)';
-                      e.target.style.boxShadow = 'none';
+                      const target = e.currentTarget;
+                      target.style.transform = 'translateY(0)';
+                      target.style.boxShadow = 'none';
                     }
                   }}
                 >

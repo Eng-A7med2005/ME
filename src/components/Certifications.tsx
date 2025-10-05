@@ -3,7 +3,17 @@
 import { Award, Calendar, ExternalLink, BookOpen } from 'lucide-react';
 import { useState } from 'react';
 
-const certifications = [
+interface Certification {
+  title: string;
+  provider: string;
+  date: string;
+  description: string;
+  category: string;
+  certificate: string;
+  color: string;
+}
+
+const certifications: Certification[] = [
   {
     title: 'Data Science Course',
     provider: 'Optical Soft',
@@ -54,8 +64,8 @@ const certifications = [
 const categories = ['All', 'Data Science', 'Deep Learning', 'Database', 'Mathematics'];
 
 export default function Certifications() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedCert, setSelectedCert] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
 
   const filteredCertifications = selectedCategory === 'All' 
     ? certifications 
@@ -122,14 +132,16 @@ export default function Certifications() {
                 transition: 'all 0.3s',
                 backdropFilter: 'blur(10px)'
               }}
-              onMouseEnter={(e) => {
+              onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+                const target = e.currentTarget;
                 if (selectedCategory !== category) {
-                  e.target.style.background = 'rgba(100, 255, 218, 0.2)';
+                  target.style.background = 'rgba(100, 255, 218, 0.2)';
                 }
               }}
-              onMouseLeave={(e) => {
+              onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+                const target = e.currentTarget;
                 if (selectedCategory !== category) {
-                  e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                  target.style.background = 'rgba(255, 255, 255, 0.1)';
                 }
               }}
             >
@@ -158,15 +170,17 @@ export default function Certifications() {
                 cursor: 'pointer'
               }}
               onClick={() => setSelectedCert(cert)}
-              onMouseEnter={(e) => {
-                e.target.style.transform = 'translateY(-10px)';
-                e.target.style.borderColor = 'rgba(100, 255, 218, 0.3)';
-                e.target.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.4)';
+              onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
+                const target = e.currentTarget as HTMLDivElement;
+                target.style.transform = 'translateY(-10px)';
+                target.style.borderColor = 'rgba(100, 255, 218, 0.3)';
+                target.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.4)';
               }}
-              onMouseLeave={(e) => {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.borderColor = 'rgba(100, 255, 218, 0.1)';
-                e.target.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+              onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
+                const target = e.currentTarget as HTMLDivElement;
+                target.style.transform = 'translateY(0)';
+                target.style.borderColor = 'rgba(100, 255, 218, 0.1)';
+                target.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
               }}
             >
               {/* Certificate Header */}
@@ -252,13 +266,15 @@ export default function Certifications() {
                     justifyContent: 'center',
                     gap: '0.5rem'
                   }}
-                  onMouseEnter={(e) => {
-                    e.target.style.transform = 'translateY(-2px)';
-                    e.target.style.boxShadow = '0 10px 20px rgba(100, 255, 218, 0.3)';
+                  onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+                    const target = e.currentTarget as HTMLButtonElement;
+                    target.style.transform = 'translateY(-2px)';
+                    target.style.boxShadow = '0 10px 20px rgba(100, 255, 218, 0.3)';
                   }}
-                  onMouseLeave={(e) => {
-                    e.target.style.transform = 'translateY(0)';
-                    e.target.style.boxShadow = 'none';
+                  onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+                    const target = e.currentTarget as HTMLButtonElement;
+                    target.style.transform = 'translateY(0)';
+                    target.style.boxShadow = 'none';
                   }}
                 >
                   <ExternalLink size={18} />

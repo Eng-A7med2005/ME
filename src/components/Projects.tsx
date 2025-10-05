@@ -137,13 +137,15 @@ export default function Projects() {
                 backdropFilter: 'blur(10px)'
               }}
               onMouseEnter={(e) => {
+                const target = e.target as HTMLElement;
                 if (selectedCategory !== category) {
-                  e.target.style.background = 'rgba(100, 255, 218, 0.2)';
+                  target.style.background = 'rgba(100, 255, 218, 0.2)';
                 }
               }}
               onMouseLeave={(e) => {
+                const target = e.target as HTMLElement;
                 if (selectedCategory !== category) {
-                  e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                  target.style.background = 'rgba(255, 255, 255, 0.1)';
                 }
               }}
             >
@@ -171,14 +173,16 @@ export default function Projects() {
                 transition: 'all 0.3s'
               }}
               onMouseEnter={(e) => {
-                e.target.style.transform = 'translateY(-10px)';
-                e.target.style.borderColor = 'rgba(100, 255, 218, 0.3)';
-                e.target.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.4)';
+                const target = e.target as HTMLElement;
+                target.style.transform = 'translateY(-10px)';
+                target.style.borderColor = 'rgba(100, 255, 218, 0.3)';
+                target.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.4)';
               }}
               onMouseLeave={(e) => {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.borderColor = 'rgba(100, 255, 218, 0.1)';
-                e.target.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+                const target = e.target as HTMLElement;
+                target.style.transform = 'translateY(0)';
+                target.style.borderColor = 'rgba(100, 255, 218, 0.1)';
+                target.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
               }}
             >
               {/* Project Image */}
@@ -307,12 +311,14 @@ export default function Projects() {
                       border: '1px solid rgba(100, 255, 218, 0.2)'
                     }}
                     onMouseEnter={(e) => {
-                      e.target.style.background = 'rgba(100, 255, 218, 0.2)';
-                      e.target.style.transform = 'translateY(-2px)';
+                      const target = e.target as HTMLElement;
+                      target.style.background = 'rgba(100, 255, 218, 0.2)';
+                      target.style.transform = 'translateY(-2px)';
                     }}
                     onMouseLeave={(e) => {
-                      e.target.style.background = 'rgba(100, 255, 218, 0.1)';
-                      e.target.style.transform = 'translateY(0)';
+                      const target = e.target as HTMLElement;
+                      target.style.background = 'rgba(100, 255, 218, 0.1)';
+                      target.style.transform = 'translateY(0)';
                     }}
                   >
                     <Github size={18} />
@@ -335,12 +341,14 @@ export default function Projects() {
                       transition: 'all 0.3s'
                     }}
                     onMouseEnter={(e) => {
-                      e.target.style.transform = 'translateY(-2px)';
-                      e.target.style.boxShadow = '0 10px 20px rgba(100, 255, 218, 0.3)';
+                      const target = e.target as HTMLElement;
+                      target.style.transform = 'translateY(-2px)';
+                      target.style.boxShadow = '0 10px 20px rgba(100, 255, 218, 0.3)';
                     }}
                     onMouseLeave={(e) => {
-                      e.target.style.transform = 'translateY(0)';
-                      e.target.style.boxShadow = 'none';
+                      const target = e.target as HTMLElement;
+                      target.style.transform = 'translateY(0)';
+                      target.style.boxShadow = 'none';
                     }}
                   >
                     <ExternalLink size={18} />

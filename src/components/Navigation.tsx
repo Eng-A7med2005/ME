@@ -74,8 +74,14 @@ export default function Navigation() {
                   transition: 'color 0.2s',
                   cursor: 'pointer'
                 }}
-                onMouseEnter={(e) => e.target.style.color = 'var(--color-accent)'}
-                onMouseLeave={(e) => e.target.style.color = 'var(--color-text)'}
+                onMouseEnter={(e) => {
+                  const target = e.target as HTMLElement;
+                  target.style.color = 'var(--color-accent)';
+                }}
+                onMouseLeave={(e) => {
+                  const target = e.target as HTMLElement;
+                  target.style.color = 'var(--color-text)';
+                }}
               >
                 {item.name}
               </a>
@@ -146,12 +152,14 @@ export default function Navigation() {
                     transition: 'all 0.2s'
                   }}
                   onMouseEnter={(e) => {
-                    e.target.style.background = 'rgba(100, 255, 218, 0.1)';
-                    e.target.style.color = '#64FFDA';
+                    const target = e.target as HTMLElement;
+                    target.style.background = 'rgba(100, 255, 218, 0.1)';
+                    target.style.color = '#64FFDA';
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.background = 'transparent';
-                    e.target.style.color = '#CCD6F6';
+                    const target = e.target as HTMLElement;
+                    target.style.background = 'transparent';
+                    target.style.color = '#CCD6F6';
                   }}
                 >
                   {item.name}

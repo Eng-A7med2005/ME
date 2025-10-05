@@ -98,12 +98,14 @@ export default function Footer() {
                     boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)'
                   }}
                   onMouseEnter={(e) => {
-                    e.target.style.transform = 'translateY(-3px) scale(1.1)';
-                    e.target.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.3)';
+                    const target = e.target as HTMLElement;
+                    target.style.transform = 'translateY(-3px) scale(1.1)';
+                    target.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.3)';
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.transform = 'translateY(0) scale(1)';
-                    e.target.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+                    const target = e.target as HTMLElement;
+                    target.style.transform = 'translateY(0) scale(1)';
+                    target.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
                   }}
                 >
                   <social.icon size={16} style={{ color: 'white' }} />
@@ -141,12 +143,14 @@ export default function Footer() {
                       display: 'inline-block'
                     }}
                     onMouseEnter={(e) => {
-                      e.target.style.color = '#64FFDA';
-                      e.target.style.transform = 'translateX(5px)';
+                      const target = e.target as HTMLElement;
+                      target.style.color = '#64FFDA';
+                      target.style.transform = 'translateX(5px)';
                     }}
                     onMouseLeave={(e) => {
-                      e.target.style.color = '#8892B0';
-                      e.target.style.transform = 'translateX(0)';
+                      const target = e.target as HTMLElement;
+                      target.style.color = '#8892B0';
+                      target.style.transform = 'translateX(0)';
                     }}
                   >
                     {link.name}
@@ -179,10 +183,12 @@ export default function Footer() {
                   transition: 'all 0.3s'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.color = '#64FFDA';
+                  const target = e.target as HTMLElement;
+                  target.style.color = '#64FFDA';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.color = '#8892B0';
+                  const target = e.target as HTMLElement;
+                  target.style.color = '#8892B0';
                 }}
               >
                 a7medfouda2005@gmail.com
@@ -195,10 +201,12 @@ export default function Footer() {
                   transition: 'all 0.3s'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.color = '#64FFDA';
+                  const target = e.target as HTMLElement;
+                  target.style.color = '#64FFDA';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.color = '#8892B0';
+                  const target = e.target as HTMLElement;
+                  target.style.color = '#8892B0';
                 }}
               >
                 +20 115 150 8503
@@ -230,7 +238,7 @@ export default function Footer() {
             alignItems: 'center',
             gap: '0.5rem'
           }}>
-            © 2025 Ahmed Salah Fouda — All Rights Reserved. Made with
+            2025 Ahmed Salah Fouda — All Rights Reserved. Made with
             <Heart size={16} style={{ color: '#EF4444' }} />
           </p>
 
@@ -251,12 +259,14 @@ export default function Footer() {
               boxShadow: '0 4px 15px rgba(100, 255, 218, 0.3)'
             }}
             onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-3px) scale(1.1)';
-              e.target.style.boxShadow = '0 8px 25px rgba(100, 255, 218, 0.4)';
+              const target = e.target as HTMLElement;
+              target.style.transform = 'translateY(-3px) scale(1.1)';
+              target.style.boxShadow = '0 8px 25px rgba(100, 255, 218, 0.4)';
             }}
             onMouseLeave={(e) => {
-              e.target.style.transform = 'translateY(0) scale(1)';
-              e.target.style.boxShadow = '0 4px 15px rgba(100, 255, 218, 0.3)';
+              const target = e.target as HTMLElement;
+              target.style.transform = 'translateY(0) scale(1)';
+              target.style.boxShadow = '0 4px 15px rgba(100, 255, 218, 0.3)';
             }}
           >
             <ArrowUp size={20} style={{ color: '#0A192F' }} />

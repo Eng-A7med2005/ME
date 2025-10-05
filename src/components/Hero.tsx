@@ -150,14 +150,16 @@ export default function Hero() {
                     justifyContent: 'center'
                   }}
                   onMouseEnter={(e) => {
-                    e.target.style.background = 'rgba(100, 255, 218, 0.2)';
-                    e.target.style.color = '#64FFDA';
-                    e.target.style.transform = 'translateY(-2px)';
+                    const target = e.target as HTMLElement;
+                    target.style.background = 'rgba(100, 255, 218, 0.2)';
+                    target.style.color = '#64FFDA';
+                    target.style.transform = 'translateY(-2px)';
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                    e.target.style.color = '#8892B0';
-                    e.target.style.transform = 'translateY(0)';
+                    const target = e.target as HTMLElement;
+                    target.style.background = 'rgba(255, 255, 255, 0.1)';
+                    target.style.color = '#8892B0';
+                    target.style.transform = 'translateY(0)';
                   }}
                   aria-label={label}
                 >
@@ -189,12 +191,14 @@ export default function Hero() {
                 textDecoration: 'none'
               }}
               onMouseEnter={(e) => {
-                e.target.style.transform = 'translateY(-2px)';
-                e.target.style.boxShadow = '0 10px 20px rgba(0, 123, 255, 0.3)';
+                const target = e.target as HTMLElement;
+                target.style.transform = 'translateY(-2px)';
+                target.style.boxShadow = '0 10px 20px rgba(0, 123, 255, 0.3)';
               }}
               onMouseLeave={(e) => {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = 'none';
+                const target = e.target as HTMLElement;
+                target.style.transform = 'translateY(0)';
+                target.style.boxShadow = 'none';
               }}
               >
                 <Download size={20} />
@@ -217,14 +221,16 @@ export default function Hero() {
                   transition: 'all 0.3s'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.background = '#64FFDA';
-                  e.target.style.color = '#0A192F';
-                  e.target.style.transform = 'translateY(-2px)';
+                  const target = e.target as HTMLElement;
+                  target.style.background = '#64FFDA';
+                  target.style.color = '#0A192F';
+                  target.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.background = 'transparent';
-                  e.target.style.color = '#64FFDA';
-                  e.target.style.transform = 'translateY(0)';
+                  const target = e.target as HTMLElement;
+                  target.style.background = 'transparent';
+                  target.style.color = '#64FFDA';
+                  target.style.transform = 'translateY(0)';
                 }}
               >
                 Get In Touch
@@ -275,8 +281,14 @@ export default function Hero() {
                 boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.4)',
                 transition: 'transform 0.3s'
               }}
-              onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-              onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+              onMouseEnter={(e) => {
+                const target = e.target as HTMLElement;
+                target.style.transform = 'scale(1.05)';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.target as HTMLElement;
+                target.style.transform = 'scale(1)';
+              }}
               >
                 <Image
                   src="/profile.jpg"

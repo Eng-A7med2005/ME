@@ -225,14 +225,16 @@ export default function About() {
                   boxShadow: '0 5px 15px rgba(0, 0, 0, 0.2)'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-5px)';
-                  e.target.style.borderColor = 'rgba(100, 255, 218, 0.3)';
-                  e.target.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.3)';
+                  const target = e.target as HTMLElement;
+                  target.style.transform = 'translateY(-5px)';
+                  target.style.borderColor = 'rgba(100, 255, 218, 0.3)';
+                  target.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.3)';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.borderColor = 'rgba(100, 255, 218, 0.1)';
-                  e.target.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                  const target = e.target as HTMLElement;
+                  target.style.transform = 'translateY(0)';
+                  target.style.borderColor = 'rgba(100, 255, 218, 0.1)';
+                  target.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
                 }}
               >
                 <div style={{
@@ -324,12 +326,14 @@ export default function About() {
                     transition: 'all 0.3s'
                   }}
                   onMouseEnter={(e) => {
-                    e.target.style.background = 'rgba(100, 255, 218, 0.2)';
-                    e.target.style.transform = 'scale(1.05)';
+                    const target = e.target as HTMLElement;
+                    target.style.background = 'rgba(100, 255, 218, 0.2)';
+                    target.style.transform = 'scale(1.05)';
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.background = 'rgba(100, 255, 218, 0.1)';
-                    e.target.style.transform = 'scale(1)';
+                    const target = e.target as HTMLElement;
+                    target.style.background = 'rgba(100, 255, 218, 0.1)';
+                    target.style.transform = 'scale(1)';
                   }}
                 >
                   <skill.icon size={20} style={{ color: '#64FFDA' }} />
@@ -375,10 +379,12 @@ export default function About() {
                     transition: 'all 0.3s'
                   }}
                   onMouseEnter={(e) => {
-                    e.target.style.background = 'rgba(100, 255, 218, 0.2)';
+                    const target = e.target as HTMLElement;
+                    target.style.background = 'rgba(100, 255, 218, 0.2)';
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.background = 'rgba(100, 255, 218, 0.1)';
+                    const target = e.target as HTMLElement;
+                    target.style.background = 'rgba(100, 255, 218, 0.1)';
                   }}
                 >
                   <div style={{

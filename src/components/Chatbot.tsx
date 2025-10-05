@@ -41,19 +41,19 @@ const chatbotResponses = {
   ]
 };
 
+interface Message {
+  id: number;
+  text: string;
+  sender: 'user' | 'bot';
+  timestamp: Date;
+}
+
 export default function Chatbot() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    {
-      id: 1,
-      text: "Hello! I'm Ahmed's AI assistant. How can I help you today?",
-      sender: 'bot',
-      timestamp: new Date()
-    }
-  ]);
-  const [inputValue, setInputValue] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-  const messagesEndRef = useRef(null);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [inputValue, setInputValue] = useState<string>('');
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [isTyping, setIsTyping] = useState<boolean>(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -63,7 +63,7 @@ export default function Chatbot() {
     scrollToBottom();
   }, [messages]);
 
-  const getBotResponse = (userMessage) => {
+  const getBotResponse = (userMessage: string) => {
     const message = userMessage.toLowerCase();
     
     if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
@@ -83,10 +83,10 @@ export default function Chatbot() {
     }
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = (): void => {
     if (!inputValue.trim()) return;
 
-    const userMessage = {
+    const userMessage: Message = {
       id: Date.now(),
       text: inputValue,
       sender: 'user',
@@ -99,7 +99,7 @@ export default function Chatbot() {
 
     // Simulate bot typing delay
     setTimeout(() => {
-      const botResponse = {
+      const botResponse: Message = {
         id: Date.now() + 1,
         text: getBotResponse(inputValue),
         sender: 'bot',
@@ -111,18 +111,22 @@ export default function Chatbot() {
     }, 1000 + Math.random() * 1000);
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
     }
   };
 
+  const toggleChat = (): void => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
       {/* Chatbot Toggle Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleChat}
         style={{
           position: 'fixed',
           bottom: '2rem',
@@ -140,13 +144,15 @@ export default function Chatbot() {
           transition: 'all 0.3s',
           zIndex: 1000
         }}
-        onMouseEnter={(e) => {
-          e.target.style.transform = 'scale(1.1)';
-          e.target.style.boxShadow = '0 15px 40px rgba(100, 255, 218, 0.4)';
+        onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+          const target = e.currentTarget as HTMLButtonElement;
+          target.style.transform = 'scale(1.1)';
+          target.style.boxShadow = '0 15px 40px rgba(100, 255, 218, 0.4)';
         }}
-        onMouseLeave={(e) => {
-          e.target.style.transform = 'scale(1)';
-          e.target.style.boxShadow = '0 10px 30px rgba(100, 255, 218, 0.3)';
+        onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+          const target = e.currentTarget as HTMLButtonElement;
+          target.style.transform = 'scale(1)';
+          target.style.boxShadow = '0 10px 30px rgba(100, 255, 218, 0.3)';
         }}
       >
         {isOpen ? (
