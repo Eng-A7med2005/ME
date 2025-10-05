@@ -3,9 +3,8 @@
 import { 
   Code, 
   Database, 
-  Cpu, 
+  Cpu,
   GraduationCap,
-  Globe,
   Users,
   Clock,
   MessageCircle,

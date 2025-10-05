@@ -29,7 +29,7 @@ export default function Chatbot() {
     const message = userMessage.toLowerCase();
     
     if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
-      return "Hello! I'm Ahmed's AI assistant. How can I help you today?";
+      return "Hello! I&apos;m Ahmed's AI assistant. How can I help you today?";
     } else if (message.includes('project') || message.includes('work')) {
       return "Ahmed has worked on various projects including web applications, data analysis tools, and machine learning models. You can check out his portfolio for more details.";
     } else if (message.includes('experience') || message.includes('background')) {
