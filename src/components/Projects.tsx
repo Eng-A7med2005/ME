@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { useState } from 'react';
 import { Github, ExternalLink, Calendar, Code } from 'lucide-react';
 
@@ -70,7 +69,7 @@ const projects = [
 const categories = ['All', 'AI/ML', 'Computer Vision', 'NLP', 'Deep Learning'];
 
 export default function Projects() {
-  const [selectedCategory, setSelectedCategory] = React.useState('All');
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   const filteredProjects = selectedCategory === 'All' 
     ? projects 

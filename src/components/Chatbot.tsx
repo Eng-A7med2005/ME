@@ -29,7 +29,7 @@ export default function Chatbot() {
     const message = userMessage.toLowerCase();
     
     if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
-      return "Hello! I'm Ahmed's AI assistant. How can I help you today?";
+      return "Hello! I&apos;m Ahmed&apos;s AI assistant. How can I help you today?";
     } else if (message.includes('project') || message.includes('work')) {
       return "Ahmed has worked on various projects including web applications, data analysis tools, and machine learning models. You can check out his portfolio for more details.";
     } else if (message.includes('experience') || message.includes('background')) {
@@ -37,7 +37,7 @@ export default function Chatbot() {
     } else if (message.includes('contact') || message.includes('email') || message.includes('reach')) {
       return "You can contact Ahmed through the contact form on his website or connect with him on LinkedIn.";
     } else {
-      return "I'm sorry, I didn't understand that. Could you rephrase your question?";
+      return "I&apos;m sorry, I didn&apos;t understand that. Could you rephrase your question?";
     }
   };
 
@@ -149,7 +149,7 @@ export default function Chatbot() {
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Bot size={20} />
-              <span style={{ fontWeight: '600' }}>Ahmed's AI Assistant</span>
+              <span style={{ fontWeight: '600' }}>Ahmed&apos;s AI Assistant</span>
             </div>
             <button
               onClick={() => setIsOpen(false)}
