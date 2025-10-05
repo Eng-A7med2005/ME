@@ -3,17 +3,17 @@
 import { 
   Code, 
   Database, 
-  Brain, 
-  Eye, 
-  MessageSquare, 
-  Zap, 
-  BarChart3, 
-  Cpu,
+  Cpu, 
   GraduationCap,
   Globe,
   Users,
   Clock,
-  MessageCircle
+  MessageCircle,
+  BarChart3,
+  Brain,
+  Eye,
+  MessageSquare,
+  Zap
 } from 'lucide-react';
 
 const skills = [
@@ -213,7 +213,7 @@ export default function About() {
           }}>
             {skills.map((skill, index) => (
               <div
-                key={skill.category}
+                key={index}
                 style={{
                   background: 'rgba(255, 255, 255, 0.05)',
                   borderRadius: '1rem',
@@ -315,7 +315,7 @@ export default function About() {
             }}>
               {softSkills.map((skill, index) => (
                 <div
-                  key={skill.name}
+                  key={index}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -368,7 +368,7 @@ export default function About() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               {languages.map((language, index) => (
                 <div
-                  key={language.name}
+                  key={index}
                   style={{
                     display: 'flex',
                     alignItems: 'center',

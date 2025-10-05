@@ -67,19 +67,15 @@ export default function Chatbot() {
     const message = userMessage.toLowerCase();
     
     if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
-      return chatbotResponses.greeting[Math.floor(Math.random() * chatbotResponses.greeting.length)];
-    } else if (message.includes('about') || message.includes('who') || message.includes('background')) {
-      return chatbotResponses.about[Math.floor(Math.random() * chatbotResponses.about.length)];
-    } else if (message.includes('project') || message.includes('work') || message.includes('portfolio')) {
-      return chatbotResponses.projects[Math.floor(Math.random() * chatbotResponses.projects.length)];
-    } else if (message.includes('experience') || message.includes('intern') || message.includes('job')) {
-      return chatbotResponses.experience[Math.floor(Math.random() * chatbotResponses.experience.length)];
-    } else if (message.includes('skill') || message.includes('technology') || message.includes('programming')) {
-      return chatbotResponses.skills[Math.floor(Math.random() * chatbotResponses.skills.length)];
-    } else if (message.includes('contact') || message.includes('email') || message.includes('phone')) {
-      return chatbotResponses.contact[Math.floor(Math.random() * chatbotResponses.contact.length)];
+      return "Hello! I'm Ahmed's AI assistant. How can I help you today?";
+    } else if (message.includes('project') || message.includes('work')) {
+      return "Ahmed has worked on various projects including web applications, data analysis tools, and machine learning models. You can check out his portfolio for more details.";
+    } else if (message.includes('experience') || message.includes('background')) {
+      return "Ahmed has experience in full-stack development, data science, and machine learning. He has worked with technologies like React, Node.js, Python, and TensorFlow.";
+    } else if (message.includes('contact') || message.includes('email') || message.includes('reach')) {
+      return "You can contact Ahmed through the contact form on his website or connect with him on LinkedIn.";
     } else {
-      return chatbotResponses.default[Math.floor(Math.random() * chatbotResponses.default.length)];
+      return "I'm sorry, I didn't understand that. Could you rephrase your question?";
     }
   };
 

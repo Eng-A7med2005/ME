@@ -77,14 +77,13 @@ export default function Hero() {
                 AI & Data Science Engineer
               </div>
               <p style={{
-                fontSize: '1.125rem',
+                fontSize: '1.25rem',
                 color: 'var(--color-text-secondary)',
-                marginBottom: '2rem',
-                lineHeight: '1.7',
-                maxWidth: '500px'
+                maxWidth: '800px',
+                margin: '1.5rem auto',
+                lineHeight: '1.7'
               }}>
-                Building intelligent systems that transform data into impact. 
-                Passionate about creating scalable AI solutions and automation systems.
+                I'm a passionate Full-Stack Developer and Data Scientist with expertise in building web applications and machine learning solutions.
               </p>
             </div>
 

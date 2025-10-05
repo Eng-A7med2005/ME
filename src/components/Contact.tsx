@@ -39,6 +39,7 @@ export default function Contact() {
       });
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
+      console.error('Error submitting form:', error);
       setSubmitStatus({
         success: false,
         message: 'Something went wrong. Please try again later.'
@@ -122,10 +123,11 @@ export default function Contact() {
             fontSize: '1.25rem',
             color: 'var(--color-text-secondary)',
             maxWidth: '800px',
-            margin: '0 auto',
-            lineHeight: '1.7'
+            margin: '0 auto 3rem',
+            lineHeight: '1.7',
+            textAlign: 'center'
           }}>
-            Let's connect and discuss how we can work together to build amazing AI solutions
+            I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.
           </p>
         </div>
 
